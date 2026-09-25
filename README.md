@@ -12,7 +12,6 @@ The project focuses on PostgreSQL integration with an Express backend and common
 * **pg** — Node.js PostgreSQL client with connection pooling
 * **Docker** — runs PostgreSQL in a container
 * **Joi** — request validation
-* **Nodemon** — development auto-restart
 * **Bruno** — API testing
 
 ## Features
