@@ -1,0 +1,6 @@
+node_modules/
+.env
+Personalreadme.md
+notes.md
+postgres-express-crud-api-collection/
+*.png
