@@ -2,9 +2,12 @@
 import pool from "../config/db.js"
 
 // define function for postgres DB operation 
-export const getAllUsersService = async() =>{
+export const getAllUsersService = async () => {
   const result = await pool.query("SELECT * FROM users");
-  return result.rows;
+  return {
+    totalUsers: result.rows.length,
+    users: result.rows
+  };
 };
 
 export const getUserByIdService=async(id)=>{

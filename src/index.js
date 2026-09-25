@@ -57,6 +57,4 @@ const port = process.env.PORT || 4001;
         process.exit(1);}
   }
 
-
-
 startServer();

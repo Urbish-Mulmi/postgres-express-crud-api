@@ -2,16 +2,28 @@ import pg from "pg";
 import dotenv from "dotenv";
 
 dotenv.config();
+
 const { Pool } = pg;
 
-const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
-});
+const dbEnv = process.env.DB_ENV;
 
+if (!["local", "neon"].includes(dbEnv)) {
+  throw new Error('DB_ENV must be either "local" or "neon"');
+}
 
-console.log("POOL DB:", pool.options.database);
+const pool =
+  dbEnv === "neon"
+    ? new Pool({
+        connectionString: process.env.NEON_DATABASE_URL,
+      })
+    : new Pool({
+        host: process.env.DB_HOST,
+        port: process.env.DB_PORT,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME,
+      });
+
+console.log(`🧩 Database environment: ${dbEnv}`);
+
 export default pool;
