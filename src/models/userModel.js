@@ -2,11 +2,15 @@
 import pool from "../config/db.js"
 
 // define function for postgres DB operation 
-export const getAllUsersService = async () => {
-  const result = await pool.query("SELECT * FROM users");
-  return {
-    totalUsers: result.rows.length,
-    users: result.rows
+export const getAllUsersService = async (limitValue, offsetValue) => {
+  const result = await pool.query(  `SELECT * FROM users ORDER BY id LIMIT $1 OFFSET $2`, [limitValue, offsetValue] );
+  const totalUsers = await pool.query("SELECT COUNT(*) FROM users");
+  return {    
+    totalUsers:totalUsers.rows[0].count,
+    "Current":"📊",
+    LimitValue:limitValue,OffsetValue:offsetValue,
+    Users:result.rows
+    
   };
 };
 

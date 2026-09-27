@@ -9,6 +9,9 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 4001;
 
+const dbEnv = process.env.DB_ENV;
+console.log("👉 Toggle DB between[ Neon|local ] from .env || Current db chosen:", dbEnv);
+
 // Middlewares
   app.use(express.json()); 
 

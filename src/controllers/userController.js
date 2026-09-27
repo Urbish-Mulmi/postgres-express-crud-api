@@ -14,10 +14,10 @@ export const homepageInfo = (req, res, next) => {
   try {
     res.status(200).json({
       message: "Welcome to the PostgreSQL CRUD API, created on 2026 sep 25",
-      version: "Iteration 1",
+      version: "Iteration 2",
       resource: "/api/users",
       operations: [
-        "GET all users",        "GET user by ID",        "POST create user",        "PUT update user",        "DELETE user"
+        "GET all users","GET user by ID","POST create user","PUT update user","DELETE user","Use query parameter limitValue and offsetValue"
       ],
       ToolsForInteracting: " Postman, Bruno, Thunder Client"
     });
@@ -39,8 +39,9 @@ export const createUser = async (req,res,next)=>{
 }
 
 export const getAllUsers = async (req,res,next)=>{
+  const  {limitValue=5, offsetValue=0}=req.query
   try {
-    const users = await getAllUsersService();
+    const users = await getAllUsersService(limitValue,offsetValue);
     handleResponse(res, 200, "All Users Fetched Successfully", users);    
   } catch (err) {
     next(err);
