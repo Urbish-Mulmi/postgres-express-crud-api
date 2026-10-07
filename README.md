@@ -1,8 +1,36 @@
 # PostgreSQL Express CRUD API
 
-REST API built with **Node.js, Express.js, and PostgreSQL** implementing CRUD operations for a `users` resource.
+> ## ℹ️ ELI5
+>
+> **What is this?**
+>
+> Backend-only practice project of a REST API built by implementing CRUD operations for a `users` resource using PostgreSQL.
+>
+> **Things learnt and implemented**
+>
+> * centralized error handling
+> * Joi validation
+> * Bruno API testing
+> * PostgreSQL integration 
+>
+> **Deployments**
+>
+> * **PostgreSQL Db** — Neon
+> * **Backend** — Render
+>
+> ---
 
-The project focuses on PostgreSQL integration with an Express backend and common backend practices including connection pooling, request validation, centralized error handling, and REST-style routing.
+## API Endpoints
+
+#### Existing resource : ` Users`
+
+| Method   | Endpoint         | Operation        |
+| -------- | ---------------- | ---------------- |
+| `GET`    | `/api/users`     | Get all users    |
+| `GET`    | `/api/users/:id` | Get a user by ID |
+| `POST`   | `/api/users`     | Create a user    |
+| `PUT`    | `/api/users/:id` | Update a user    |
+| `DELETE` | `/api/users/:id` | Delete a user    |
 
 ## Tech Stack
 
@@ -23,18 +51,6 @@ The project focuses on PostgreSQL integration with an Express backend and common
 * Centralized error-handling middleware
 * Database initialization during application startup
 
-## API Endpoints
-
-### Users
-
-| Method   | Endpoint         | Operation        |
-| -------- | ---------------- | ---------------- |
-| `GET`    | `/api/users`     | Get all users    |
-| `GET`    | `/api/users/:id` | Get a user by ID |
-| `POST`   | `/api/users`     | Create a user    |
-| `PUT`    | `/api/users/:id` | Update a user    |
-| `DELETE` | `/api/users/:id` | Delete a user    |
-
 ## Database
 
 PostgreSQL is provided through a Docker container and exposed on port `5432`.
@@ -50,37 +66,41 @@ DB_PASSWORD=your_password
 DB_NAME=express-crud
 ```
 
-The Node.js application runs on the host machine while PostgreSQL runs inside Docker. Docker maps the PostgreSQL container's port `5432` to the host's port `5432`.
-
 ## Application Startup Flow
-
-The application starts in the following order:
 
 ```text
 Verify PostgreSQL connection
-          ↓
+           ↓
 Initialize database
-          ↓
+           ↓
 Start Express server
 ```
 
-The Express server starts listening only after PostgreSQL connectivity has been verified and database initialization has completed.
+The Express server starts listening only after the PostgreSQL connection has been verified and the database initialization has completed.
 
 ## Running Locally
 
-Install dependencies:
+### Install dependencies
 
 ```bash
 npm install
 ```
 
-Run in development mode:
+### Start PostgreSQL
+
+Start the PostgreSQL Docker container used for local development.
+
+### Configure environment variables
+
+Create a `.env` file based on `.env.example` and provide your local PostgreSQL credentials.
+
+### Start the development server
 
 ```bash
 npm run dev
 ```
 
-Run normally:
+Or:
 
 ```bash
 npm start
@@ -91,11 +111,3 @@ The API runs at:
 ```text
 http://localhost:4001
 ```
-
-## Environment Variables
-
-The repository includes a `.env.example` file with placeholder values.
-
-Create a `.env` file based on it and provide your local PostgreSQL credentials.
-
-
