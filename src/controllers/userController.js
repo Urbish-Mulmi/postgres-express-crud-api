@@ -27,7 +27,6 @@ export const homepageInfo = (req, res, next) => {
 };
 
 
-
 export const createUser = async (req,res,next)=>{
   const {name, email} = req.body;
   try {
